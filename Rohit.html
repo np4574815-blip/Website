@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rohit Education Classes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Razorpay Payment Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<style>
+:root{
+  --main:#1d2671;
+  --accent:#c33764;
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Segoe UI, sans-serif;
+}
+body{
+  background:#f4f6ff;
+}
+header{
+  background:linear-gradient(135deg,var(--main),var(--accent));
+  color:white;
+  text-align:center;
+  padding:80px 20px;
+}
+header h1{font-size:3rem;}
+nav{
+  background:#111;
+  padding:14px;
+  text-align:center;
+  position:sticky;
+  top:0;
+}
+nav a{
+  color:white;
+  margin:0 15px;
+  text-decoration:none;
+}
+section{
+  padding:70px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+.title{text-align:center;margin-bottom:40px;}
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+.card{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,.1);
+}
+.form-box{
+  background:white;
+  padding:30px;
+  border-radius:15px;
+  max-width:500px;
+  margin:auto;
+}
+input,textarea,button{
+  width:100%;
+  padding:12px;
+  margin-top:12px;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+button{
+  background:var(--main);
+  color:white;
+  border:none;
+  cursor:pointer;
+}
+button:hover{background:var(--accent);}
+footer{
+  background:#111;
+  color:white;
+  text-align:center;
+  padding:20px;
+}
+.float{
+  position:fixed;
+  right:20px;
+  padding:14px 18px;
+  border-radius:50px;
+  color:white;
+  text-decoration:none;
+}
+.whatsapp{bottom:90px;background:#25D366;}
+.call{bottom:30px;background:#1d2671;}
+</style>
+</head>
+
+<body>
+
+<header>
+  <h1>Rohit Education Classes</h1>
+  <p>Premium Coaching for Academic Excellence</p>
+  <strong>🙏 Jai Mata Di 🙏</strong>
+</header>
+
+<nav>
+  <a href="#courses">Courses</a>
+  <a href="#admission">Admission</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="courses">
+  <div class="title"><h2>Courses Offered</h2></div>
+  <div class="cards">
+    <div class="card">Class 6 – 8 (Foundation)</div>
+    <div class="card">Class 9 – 10 (Boards)</div>
+    <div class="card">Class 11 – 12 (Advanced)</div>
+  </div>
+</section>
+
+<section id="admission">
+  <div class="title"><h2>Admission & Fee Payment</h2></div>
+  <div class="form-box">
+    <input id="name" placeholder="Student Name">
+    <input id="class" placeholder="Class">
+    <input id="phone" placeholder="Phone Number">
+    <textarea id="msg" placeholder="Message"></textarea>
+
+    <button onclick="submitForm()">Submit Enquiry</button>
+    <button onclick="payFees()">Pay Fees Online</button>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="title"><h2>Contact</h2></div>
+  <p style="text-align:center">
+    📧 rohit.krsingh83@gmail.com <br><br>
+    📞 +91 88968 82644
+  </p>
+</section>
+
+<footer>
+  © 2026 Rohit Education Classes • Jai Mata Di
+</footer>
+
+<a class="float whatsapp" href="https://wa.me/918896882644">WhatsApp</a>
+<a class="float call" href="tel:+918896882644">Call</a>
+
+<script>
+function submitForm(){
+  alert("Enquiry submitted successfully!");
+}
+
+function payFees(){
+  var options = {
+    "key": "YOUR_KEY_ID_HERE",
+    "amount": 50000,
+    "currency": "INR",
+    "name": "Rohit Education Classes",
+    "description": "Tuition Fees",
+    "prefill": {
+      "contact": "8896882644",
+      "email": "rohit.krsingh83@gmail.com"
+    },
+    "handler": function (response){
+      alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id);
+    },
+    "theme": {
+      "color": "#1d2671"
+    }
+  };
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>
+
+</body>
+</html>
